@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class UploadFileComponent {
 
+  selectedFile: any
+
+  selectFile(event: any) {
+    // console.log(event.target.files);
+    this.selectedFile = event.target.files[0]
+  }
+
+  uploadFile() {
+    console.log(this.selectedFile);
+  }
 }

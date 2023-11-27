@@ -1,1 +1,10 @@
-<p>upload-file works!</p>
+<h2 class="my-2">Kép feltöltés</h2>
+<div class="row mb-3">
+    <div class="col">
+        <!-- <label for="formFile" class="form-label">File feltöltése</label> -->
+        <input (change)="selectFile($event)" class="form-control" type="file" id="formFile">
+    </div>
+    <div class="col">
+        <button (click)="uploadFile()" type="button" class="btn btn-outline-primary">Feltöltés</button>
+    </div>
+</div>
