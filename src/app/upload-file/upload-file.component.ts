@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BaseService } from '../base.service';
 
 @Component({
   selector: 'app-upload-file',
@@ -9,12 +10,15 @@ export class UploadFileComponent {
 
   selectedFile: any
 
+  constructor(private base: BaseService) { }
+
   selectFile(event: any) {
     // console.log(event.target.files);
     this.selectedFile = event.target.files[0]
   }
 
   uploadFile() {
-    console.log(this.selectedFile);
+    this.base.uploadFile(this.selectedFile)
+    // console.log(this.selectedFile);
   }
 }
