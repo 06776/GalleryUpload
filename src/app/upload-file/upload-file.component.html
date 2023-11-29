@@ -1,10 +1,14 @@
-<h2 class="my-2">Kép feltöltés</h2>
-<div class="row mb-3">
+<h2 class="my-2">Képfeltöltés</h2>
+<div class="row mb-3 d-flex">
     <div class="col">
-        <!-- <label for="formFile" class="form-label">File feltöltése</label> -->
+        <label for="formFile" class="form-label">Válaszd ki a feltöltendő fájlt!</label>
         <input (change)="selectFile($event)" class="form-control" type="file" id="formFile">
     </div>
-    <div class="col">
-        <button (click)="uploadFile()" type="button" class="btn btn-outline-primary">Feltöltés</button>
+    <div class="col d-flex align-items-end">
+        <button [disabled]="!selectedFile" (click)="uploadFile()" type="button"
+            class="btn btn-primary ">Feltöltés</button>
     </div>
 </div>
+<div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+        aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': percentage+'%'}"></div>

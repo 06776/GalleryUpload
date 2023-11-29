@@ -10,26 +10,33 @@ export class BaseService {
   constructor(private storage: AngularFireStorage, private db: AngularFireDatabase) { }
 
   uploadFile(file: any) {
-    const filename = '/feltolt/' + file.name;
-    const storageRef = this.storage.ref(filename);
-    this.storage.upload(filename, file).snapshotChanges()
+    const filename = '/feltolt/' + file.name
+    console.log(filename)
+    const storegeRef = this.storage.ref(filename)
+
+    const updateTask = this.storage.upload(filename, file)
+
+    updateTask.snapshotChanges()
       .subscribe({
         next: (ref: any) => {
           console.log(ref)
+
         },
         error: (err: any) => console.log(err),
         complete: () => {
-          storageRef.getDownloadURL().subscribe(
+          storegeRef.getDownloadURL().subscribe(
             (url) => {
               this.saveFileData({ name: file.name, url: url })
               console.log(file.name, url)
             })
         }
       }
-      );
+      )
+    return updateTask.percentageChanges()
   }
 
   saveFileData(fileData: any) {
     this.db.list('/feltolt/').push(fileData)
   }
+
 }
